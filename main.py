@@ -28,5 +28,5 @@ def update(frames):
 
 ani = FuncAnimation(fig, update, frames=np.linspace(-t.max()/2, 2*t.max(), 500),
                     init_func=init, blit=True)
-# plt.show()
-ani.save('/RWA.mp4')
+plt.show()
+# ani.save('/RWA.mp4')
