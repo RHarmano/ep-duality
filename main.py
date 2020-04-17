@@ -15,18 +15,23 @@ ln, = plt.plot([], [], 'b-')
 
 def init():
     ax.set_xlim(0, 2*np.pi)
-    ax.set_ylim(0, 2)
+    ax.set_ylim(0, 1.1)
+    plt.title(r'RWA Simulation Animation for a Frequency of $\omega$ = %.2f Hz'%f2, size=18, weight='bold')
+    plt.xlabel('t (s)', size=14, weight='bold')
+    plt.ylabel('Amplitude', size=14, weight='bold')
+    ax.set_xticks([0,np.pi/2,np.pi,3/2*np.pi,2*np.pi])
+    ax.set_xticklabels(['0',r'$\frac{\pi}{2}$',r'$\pi$',r'$\frac{3\pi}{2}$',r'2$\pi$'])
     return ln,
 
 def update(frames):
     xdata = t
-    y1 = np.exp(-(t-frames)**2)*np.sin(f1*t)**2
+    # y1 = np.exp(-(t-frames)**2)*np.sin(f1*t)**2
     y2 = np.exp(-(t-frames)**2)*np.sin(f2*t)**2
-    y3 = np.exp(-(t-frames)**2)*np.sin(f3*t)**2
+    # y3 = np.exp(-(t-frames)**2)*np.sin(f3*t)**2
     ln.set_data(xdata, y2)
     return ln,
 
-ani = FuncAnimation(fig, update, frames=np.linspace(-t.max()/2, 2*t.max(), 500),
+ani = FuncAnimation(fig, update, frames=np.linspace(-t.max()/4, 2*t.max(), 500),
                     init_func=init, blit=True)
 plt.show()
 # ani.save('/RWA.mp4')
