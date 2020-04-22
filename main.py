@@ -9,7 +9,7 @@ x = t
 y = t
 x,y = np.meshgrid(x,y)
 
-f1 = np.pi
+f1 = 25
 f2 = 2*f1
 f3 = 2*f2
 
@@ -35,6 +35,25 @@ def update(frames):
     cont = plt.contourf(x,y,z)
     return cont
 
-ani = FuncAnimation(fig, update, frames=np.linspace(0, t.max(), 100), interval=50)
+ani = FuncAnimation(fig, update, frames=np.linspace(0, t.max(), 100), interval=10)
 plt.show()
-ani.save('corral.gif', writer='imagemagick')
+
+fig2, ax2 = plt.subplots()
+xdata, ydata = [], []
+ax2.set_xlim(0, 2*np.pi)
+ax2.set_ylim(0, 1.1)
+plt.title(r'Quantum Corral Pulse Simulation, Bounded by A Single Oscillation where $\omega$ = %.2f Hz'%f1, size=18, weight='bold')
+plt.xlabel('x', size=14, weight='bold')
+plt.ylabel('y', size=14, weight='bold')
+ax2.set_xticks([0,np.pi/2,np.pi,3/2*np.pi,2*np.pi])
+ax2.set_xticklabels(['0',r'$\frac{\pi}{2}$',r'$\pi$',r'$\frac{3\pi}{2}$',r'2$\pi$'])
+ax2.set_yticks([0,np.pi/2,np.pi,3/2*np.pi,2*np.pi])
+ax2.set_yticklabels(['0',r'$\frac{\pi}{2}$',r'$\pi$',r'$\frac{3\pi}{2}$',r'2$\pi$'])
+
+# def corral():
+#     return cont2
+# z2 = 1/(2*np.pi**0.5)*(np.exp(-((x-np.pi)**2+(y-np.pi)**2)))*(np.sin(x-np.pi)+np.sin(y-np.pi))**2
+# z2 =(np.sin(x-np.pi)*np.sin(y-np.pi))**2
+# cont2 = ax2.contourf(x,y,z2)
+# plt.show()
+# ani.save('C:/Users/roman/Documents/corral.gif', writer='imagemagick', fps=60)
