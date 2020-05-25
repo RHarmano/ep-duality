@@ -17,7 +17,7 @@ fig, ax = plt.subplots()
 xdata, ydata = [], []
 ax.set_xlim(0, 2*np.pi)
 ax.set_ylim(0, 1.1)
-plt.title(r'RWA Simulation Animation for a Frequency of $\omega$ = %.2f Hz'%f2, size=18, weight='bold')
+plt.title(r'RWA Simulation Animation for a Frequency of $\omega$ = %.2f Hz'%f1, size=18, weight='bold')
 plt.xlabel('x', size=14, weight='bold')
 plt.ylabel('y', size=14, weight='bold')
 ax.set_xticks([0,np.pi/2,np.pi,3/2*np.pi,2*np.pi])
@@ -32,10 +32,11 @@ def update(frames):
     # # y3 = np.exp(-(t-frames)**2)*np.sin(f3*t)**2
     # cont.set_data(xdata, y2)
     z = 1/(2*np.pi**0.5)*(np.exp(-((x-frames)**2+(y-frames)**2)))*(np.sin(f1*x)*np.sin(f1*y))
+    # z = (np.sin(2*x/t.max()-frames)**2+np.sin(2*y/t.max()-frames)**2)
     cont = plt.contourf(x,y,z)
     return cont
 
-ani = FuncAnimation(fig, update, frames=np.linspace(0, t.max(), 100), interval=10)
+ani = FuncAnimation(fig, update, frames=np.arange(start=0,stop=2*np.pi,step=np.pi/8), interval=10)
 plt.show()
 
 fig2, ax2 = plt.subplots()
